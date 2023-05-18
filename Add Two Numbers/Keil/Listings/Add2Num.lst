@@ -1,0 +1,41 @@
+A51 MACRO ASSEMBLER  ADD2NUM                                                              12/16/2022 17:56:04 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\Add2Num.obj
+ASSEMBLER INVOKED BY: D:\keil\C51\BIN\A51.EXE Add2Num.asm SET(SMALL) DEBUG PRINT(.\Listings\Add2Num.lst) OBJECT(.\Object
+                      s\Add2Num.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ;This is a program to add two hex numbers and send result to port P1
+                       2     ;Name:Utkarsh Swarup
+                       3     ;RegNo:20BCE10101
+                       4     
+0000                   5                     org 0000H
+0000 020400            6                     LJMP MAIN
+                       7     
+0400                   8                     org 0400H
+                       9     
+0400 759000           10     MAIN:   MOV P1,#00H; Port Initialization: Port 1 Now is Output port
+0403 7422             11                     MOV A,#22H
+0405 2423             12                     ADD A,#23H
+0407 F590             13                     MOV P1,A
+0409 80F5             14                     SJMP MAIN;INFINITY LOOP
+*** WARNING #A41 IN 14 (Add2Num.asm, LINE 14): MISSING 'END' STATEMENT
+A51 MACRO ASSEMBLER  ADD2NUM                                                              12/16/2022 17:56:04 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+MAIN . . . . . . .  C ADDR   0400H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  1 WARNING(S), 0 ERROR(S)
