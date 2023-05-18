@@ -1,0 +1,40 @@
+A51 MACRO ASSEMBLER  PORTDATA_LED                                                         12/16/2022 17:21:54 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\PortData_LED.obj
+ASSEMBLER INVOKED BY: D:\keil\C51\BIN\A51.EXE PortData_LED.asm SET(SMALL) DEBUG PRINT(.\Listings\PortData_LED.lst) OBJEC
+                      T(.\Objects\PortData_LED.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ;This is a program to send a immediate data to port p1
+                       2     ;Name:Utkarsh Swarup
+                       3     ;RegNo:20BCE10101
+                       4     
+0000                   5                     org 0000H
+0000 020400            6                     LJMP MAIN
+                       7     
+0400                   8                     org 0400H
+                       9     
+0400 759000           10     MAIN:   MOV P1,#00H; Port Initialization: Port 1 Now is Output port
+0403 74FA             11                     MOV A,#0FAH
+0405 F590             12                     MOV P1,A
+0407 80F7             13                     SJMP MAIN;INFINITY LOOP
+*** WARNING #A41 IN 13 (PortData_LED.asm, LINE 13): MISSING 'END' STATEMENT
+A51 MACRO ASSEMBLER  PORTDATA_LED                                                         12/16/2022 17:21:54 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+MAIN . . . . . . .  C ADDR   0400H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  1 WARNING(S), 0 ERROR(S)
