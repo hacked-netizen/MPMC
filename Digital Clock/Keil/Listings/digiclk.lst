@@ -1,0 +1,161 @@
+A51 MACRO ASSEMBLER  DIGICLK                                                              12/30/2022 15:33:17 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\digiclk.obj
+ASSEMBLER INVOKED BY: D:\keil\C51\BIN\A51.EXE digiclk.asm SET(SMALL) DEBUG PRINT(.\Listings\digiclk.lst) OBJECT(.\Object
+                      s\digiclk.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 00H
+                       2     
+0000 020030            3      LJMP MAIN 
+0030                   4      ORG 30H
+0030                   5       MAIN:
+0030 900300            6      MOV DPTR , #MYDATA
+0033                   7      START:
+0033 7800              8      MOV R0,#00H
+0035 7900              9      MOV R1,#00H
+0037 7A00             10      MOV R2,#00H
+0039 7B00             11      MOV R3,#00H
+003B 7C00             12      MOV R4,#00H
+003D 7D00             13      MOV R5,#00H
+                      14      
+003F BF000E           15      CJNE R7 ,#0D , DISPLAY
+0042 7800             16      MOV R0,#0H
+0044 7900             17      MOV R1,#0H
+0046 7A08             18      MOV R2,#8H
+0048 7B02             19      MOV R3,#2H
+004A 7C06             20      MOV R4,#6H
+004C 7D01             21      MOV R5,#1H
+004E 7F00             22      MOV R7,#00H
+                      23      
+                      24      
+0050                  25      DISPLAY:
+0050 0F               26      INC R7
+0051 1188             27      ACALL SHOW
+0053                  28      BACK:
+0053 08               29      INC R0
+0054 B80AF9           30      CJNE R0, #10D, DISPLAY
+0057 7800             31      MOV R0, #00H
+0059 09               32      INC R1
+005A B906F3           33      CJNE R1, #6D ,DISPLAY
+005D 7900             34      MOV R1, #00H
+005F 0A               35      INC R2
+0060 BA0AED           36      CJNE R2,#10D,DISPLAY
+0063 7A00             37      MOV R2,#00H
+0065 0B               38      INC R3
+0066 BB06E7           39      CJNE R3,#6D,DISPLAY
+0069 7B00             40      MOV R3,#00H
+006B ED               41      MOV A,R5
+006C 6402             42      XRL A, #2D
+006E 600A             43      JZ SCREENSHOT
+0070 7000             44      JNZ PART
+                      45      
+0072                  46      PART:
+0072 0C               47      INC R4
+0073 BC0ADA           48      CJNE R4,#10D,DISPLAY
+0076 7C00             49      MOV R4,#00H
+0078 8008             50      SJMP PART1
+                      51      
+007A                  52      SCREENSHOT:
+007A 0C               53      INC R4
+007B BC04D2           54      CJNE R4,#4D,DISPLAY
+007E 7C00             55      MOV R4 ,#00H
+0080 7D02             56      MOV R5,#02D
+                      57      
+A51 MACRO ASSEMBLER  DIGICLK                                                              12/30/2022 15:33:17 PAGE     2
+
+0082                  58      PART1:
+0082 0D               59      INC R5
+0083 BD03CA           60      CJNE R5,#3D,DISPLAY
+0086 80AB             61      SJMP START
+                      62      
+0088                  63      SHOW:
+0088 7E52             64      MOV R6,#82D
+008A                  65      REPEAT:
+008A E8               66      MOV A,R0
+008B 93               67      MOVC A,@A+DPTR
+008C D2A0             68      SETB P2.0
+008E F590             69      MOV P1,A
+0090 11C9             70      ACALL DELAY
+0092 C2A0             71      CLR P2.0
+0094 E9               72      MOV A,R1
+0095 93               73      MOVC A,@A+DPTR
+0096 D2A1             74      SETB P2.1
+0098 F590             75      MOV P1,A
+009A 11C9             76      ACALL DELAY
+009C C2A1             77      CLR P2.1
+009E EA               78      MOV A,R2
+009F 93               79      MOVC A,@A+DPTR
+00A0 D2A2             80      SETB P2.2
+00A2 F590             81      MOV P1,A
+00A4 11C9             82      ACALL DELAY
+00A6 C2A2             83      CLR P2.2
+00A8 EB               84      MOV A,R3
+00A9 93               85      MOVC A,@A+DPTR
+00AA D2A3             86      SETB P2.3
+00AC F590             87      MOV P1 ,A
+00AE 11C9             88      ACALL DELAY
+00B0 C2A3             89      CLR P2.3
+00B2 EC               90      MOV A,R4
+00B3 93               91      MOVC A,@A+DPTR
+00B4 D2A4             92      SETB P2.4
+00B6 F590             93      MOV P1,A
+00B8 11C9             94      ACALL DELAY
+00BA C2A4             95      CLR P2.4
+00BC ED               96      MOV A,R5
+00BD 93               97      MOVC A,@A+DPTR
+00BE D2A5             98      SETB P2.5
+00C0 F590             99      MOV P1,A
+00C2 11C9            100      ACALL DELAY
+00C4 C2A5            101      CLR P2.5
+00C6 DEC2            102      DJNZ R6, REPEAT
+00C8 22              103      RET
+                     104      
+00C9                 105      DELAY:
+00C9 D2D4            106      SETB PSW. 4
+00CB 7A0A            107      MOV R2,#10
+00CD 7B64            108      AGAIN2: MOV R3 ,#100
+00CF DBFE            109      AGAIN1:DJNZ R3,AGAIN1
+00D1 DAFA            110      DJNZ R2 , AGAIN2
+00D3 C2D4            111      CLR PSW. 4
+00D5 22              112      RET
+                     113      
+0300                 114      ORG 300H
+0300                 115       MYDATA:
+0300 3F065B4F        116       DB 3FH,06H,5BH,4FH,66H,6DH,7DH,07H,7FH,6FH
+0304 666D7D07                
+0308 7F6F                    
+                     117        END
+A51 MACRO ASSEMBLER  DIGICLK                                                              12/30/2022 15:33:17 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+AGAIN1 . . . . . .  C ADDR   00CFH   A   
+AGAIN2 . . . . . .  C ADDR   00CDH   A   
+BACK . . . . . . .  C ADDR   0053H   A   
+DELAY. . . . . . .  C ADDR   00C9H   A   
+DISPLAY. . . . . .  C ADDR   0050H   A   
+MAIN . . . . . . .  C ADDR   0030H   A   
+MYDATA . . . . . .  C ADDR   0300H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+PART . . . . . . .  C ADDR   0072H   A   
+PART1. . . . . . .  C ADDR   0082H   A   
+PSW. . . . . . . .  D ADDR   00D0H   A   
+REPEAT . . . . . .  C ADDR   008AH   A   
+SCREENSHOT . . . .  C ADDR   007AH   A   
+SHOW . . . . . . .  C ADDR   0088H   A   
+START. . . . . . .  C ADDR   0033H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
