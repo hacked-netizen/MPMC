@@ -1,0 +1,1 @@
+"Add2Num.asm" SET (SMALL) DEBUG PRINT(.\Listings\Add2Num.lst) OBJECT(.\Objects\Add2Num.obj) EP
