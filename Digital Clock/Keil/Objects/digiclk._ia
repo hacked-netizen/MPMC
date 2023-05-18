@@ -1,0 +1,1 @@
+"digiclk.asm" SET (SMALL) DEBUG PRINT(.\Listings\digiclk.lst) OBJECT(.\Objects\digiclk.obj) EP

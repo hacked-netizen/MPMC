@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\digiclk.obj" 
+TO ".\Objects\digitalclock" 
+PRINT(".\Listings\digitalclock.m51")
